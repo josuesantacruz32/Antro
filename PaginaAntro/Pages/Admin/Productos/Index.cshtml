@@ -1,0 +1,40 @@
+﻿@page
+@using PaginaAntro.Modelos
+@model PaginaAntro.Pages.Admin.Productos.IndexModel
+@{
+}
+
+<h2 class="text-center mb-5">Lista de Pisto</h2>
+
+<div class="row mb-5">
+    <div class="col">
+        <a class='btn btn-primary' href='/Admin/Productos/Agregar'>Nuevo Producto</a>
+    </div>
+
+<table class="table">
+    <tr>
+        <th style="cursor: pointer;" onclick="sortTable('Id')">id</th>
+        <th style="cursor: pointer;" onclick="sortTable('Nombre')">Nombre</th>
+        <th style="cursor: pointer;" onclick="sortTable('Descricion')">Descricion</th>
+        <th style="cursor: pointer;" onclick="sortTable('Precio')">Precio</th>
+        <th style="cursor: pointer;" onclick="sortTable('Cantidad')">Cantidad</th>
+        <th>Imagen</th>
+        <th>Accion</th>
+    </tr>
+
+    @foreach (var producto in Model.Products)
+    {
+        <tr>
+            <td>@producto.Productoid</td>
+            <td>@producto.NombreProducto</td>
+            <td>@producto.Descripcion</td>
+            <td>@(producto.Precio)$</td>
+            <td>@producto.Cantidad</td>
+            <td><img src="/productos/@producto.Imagen" width="100" /></td>
+            <td style="white-space:nowrap">
+                <a class="btn btn-primary btn-sm" href="/Admin/Productos/Editar?id=@producto.Productoid">Editar</a>
+                <a class="btn btn-danger btn-sm" href="/Admin/Productos/Eliminar?id=@producto.Productoid">Eliminar</a>
+            </td>
+        </tr>
+    }
+</table>
